@@ -1,12 +1,11 @@
-require 'roo'
+require "sinatra"
+require "sinatra/json"
 
-xlsx = Roo::Spreadsheet.open('./test_sheet.xlsx')
+require_relative('./models/excel_reader')
 
-headers = xlsx.sheet(0).row(2)
-
-for column_header in headers
-  if (column_header === nil)
-    column_header = ""
-  end
-  p "This cell contains: " + column_header
+# define a route that uses the helper
+get '/' do
+  @excel_reader = ExcelReader.new();
+  json @excel_reader.return_first_row("test_sheet.xlsx")
+  # json :foo => 'bar'
 end
