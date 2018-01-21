@@ -74,31 +74,3 @@ class ExcelReader
   end
 
 end
-
-# spreadsheet = Roo::Excelx.new("red.xlsx", file_warning: :ignore)
-# headers = spreadsheet.sheet(0).row(9)
-
-# headers.each do |head|
-#   if (head == "Local Authority ")
-#     p headers.index(head)
-#   end
-# end
-
-# constituencies = spreadsheet.sheet(0).column(2)
-#
-# constituencies.each do |cell|
-#   if (cell == "Aberdeen City")
-#     p constituencies.index(cell)
-#   end
-# end
-
-
-# spreadsheet.each_with_index { |column,index|
-#   puts "index: #{index} for #{column}"
-# }
-
-# for column in spreadsheet.sheet(0)
-# if (column != "Header 2")
-# p column
-# end
-# end
