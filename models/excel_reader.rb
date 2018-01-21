@@ -6,6 +6,7 @@ class ExcelReader
     @file = file
     @spreadsheet = ""
     @sheets = []
+    @constituencies = []
   end
 
   def file_checker()
@@ -28,33 +29,46 @@ class ExcelReader
     end
   end
 
-  
+  def get_constituencies()
+    counter = 8
+    if (file_checker)
+      for constituency in @spreadsheet.column(2)
+        if (counter < 40)
+          @constituencies.push(@spreadsheet.column(2)[counter])
+          counter += 1
+        end
+      end
+
+    end
+    return @constituencies
+  end
 
 end
-  # spreadsheet = Roo::Excelx.new("red.xlsx", file_warning: :ignore)
-  # headers = spreadsheet.sheet(0).row(9)
 
-  # headers.each do |head|
-  #   if (head == "Local Authority ")
-  #     p headers.index(head)
-  #   end
-  # end
+# spreadsheet = Roo::Excelx.new("red.xlsx", file_warning: :ignore)
+# headers = spreadsheet.sheet(0).row(9)
 
-  # constituencies = spreadsheet.sheet(0).column(2)
-  #
-  # constituencies.each do |cell|
-  #   if (cell == "Aberdeen City")
-  #     p constituencies.index(cell)
-  #   end
-  # end
+# headers.each do |head|
+#   if (head == "Local Authority ")
+#     p headers.index(head)
+#   end
+# end
+
+# constituencies = spreadsheet.sheet(0).column(2)
+#
+# constituencies.each do |cell|
+#   if (cell == "Aberdeen City")
+#     p constituencies.index(cell)
+#   end
+# end
 
 
-  # spreadsheet.each_with_index { |column,index|
-  #   puts "index: #{index} for #{column}"
-  # }
+# spreadsheet.each_with_index { |column,index|
+#   puts "index: #{index} for #{column}"
+# }
 
-  # for column in spreadsheet.sheet(0)
-  # if (column != "Header 2")
-  # p column
-  # end
-  # end
+# for column in spreadsheet.sheet(0)
+# if (column != "Header 2")
+# p column
+# end
+# end
