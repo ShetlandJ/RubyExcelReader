@@ -40,4 +40,12 @@ class TestExcelReader < MiniTest::Test
     assert_equal(127, @excel_reader.get_cell(row, column))
   end
 
+  def test_get_constituency_data_by_input()
+
+    index_array = [3, 5, 7]
+    constituency = "Dundee City"
+
+    assert_equal("Hello", @excel_reader.create_constituency_object(index_array, constituency))
+  end
+
 end

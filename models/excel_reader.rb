@@ -73,4 +73,6 @@ class ExcelReader
     return @spreadsheet.cell(row, column)
   end
 
+
+
 end
