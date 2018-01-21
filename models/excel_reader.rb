@@ -58,7 +58,14 @@ class ExcelReader
     end
   end
 
-  
+  def get_row_index_by_name(name)
+    get_constituencies()
+    for constituency in @constituencies
+      if (constituency == name)
+        return (@constituencies.index(constituency) + 8)
+      end
+    end
+  end
 
 
 
