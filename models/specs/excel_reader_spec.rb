@@ -25,8 +25,12 @@ class TestExcelReader < MiniTest::Test
     assert_equal(138, @excel_reader.get_headers_row().length )
   end
 
-  def test_get_column_index_by_row()
+  def test_get_column_index_by_name()
     assert_equal(0, @excel_reader.get_header_column_index_by_name("Local Authority ") )
+  end
+
+  def test_get_row_index_by_name()
+    assert_equal(8, @excel_reader.get_row_index_by_name("Aberdeen City") )
   end
 
 end
