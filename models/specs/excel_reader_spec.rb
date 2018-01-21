@@ -45,7 +45,7 @@ class TestExcelReader < MiniTest::Test
     index_array = [3, 10, 11]
     constituency = "Dundee City"
 
-    assert_equal([134, 44, 36], @excel_reader.create_constituency_object(index_array, constituency))
+    assert_equal([{:column_name=>"Average Monthly Income (Net £)", :stat=>134}, {:column_name=>"Percentage of Income Spent on Priority Expenditure", :stat=>44}, {:column_name=>"Employment Change/ Unemployment/ Redundancy", :stat=>36}], @excel_reader.create_constituency_object(index_array, constituency))
   end
 
 end

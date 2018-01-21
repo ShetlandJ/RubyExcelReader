@@ -60,6 +60,16 @@ class ExcelReader
     end
   end
 
+  def get_header_column_name_by_index(index)
+    get_headers_row()
+
+    for header in @headers
+      if (@headers.index(header) == index)
+        return header
+      end
+    end
+  end
+
   def get_row_index_by_name(name)
     get_constituencies()
 
@@ -78,10 +88,13 @@ class ExcelReader
     constituency_index = get_row_index_by_name(constituency)
     for number in index_array
       @chosen_constituency.push(
-        get_cell(constituency_index, number)
+        {
+          get_header_column_name_by_index(number) => get_cell(constituency_index, number)
+        }
+        # get_cell(constituency_index, number)
       )
     end
-    return @chosen_constituency
+    return { constituency => @chosen_constituency }
   end
 
 end
