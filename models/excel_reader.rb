@@ -67,8 +67,6 @@ class ExcelReader
     end
   end
 
-
-
 end
 
 # spreadsheet = Roo::Excelx.new("red.xlsx", file_warning: :ignore)
