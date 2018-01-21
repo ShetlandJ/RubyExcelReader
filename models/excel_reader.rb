@@ -7,6 +7,7 @@ class ExcelReader
     @spreadsheet = ""
     @sheets = []
     @constituencies = []
+    @headers = []
 
     file_checker()
   end
@@ -42,7 +43,19 @@ class ExcelReader
   end
 
   def get_headers_row()
-    return @spreadsheet.row(9)
+    for header in @spreadsheet.row(9)
+      @headers.push(header)
+    end
+    return @headers
+  end
+
+  def get_header_column_index_by_name(name)
+    get_headers_row()
+    for header in @headers
+      if (header == name)
+        return @headers.index(header)
+      end
+    end
   end
 
 
