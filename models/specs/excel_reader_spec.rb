@@ -37,15 +37,20 @@ class TestExcelReader < MiniTest::Test
     column = @excel_reader.get_header_column_index_by_name("No. of Debt Advice Clients")
     row = @excel_reader.get_row_index_by_name("Aberdeen City")
 
-    assert_equal(127, @excel_reader.get_cell(row, column))
+    assert_equal(127, @excel_reader.get_cell(row, column, "2012"))
+  end
+
+  def test_get_sheet_index()
+    assert_equal(0, @excel_reader.get_sheet_index("2012"))
   end
 
   def test_get_constituency_data_by_input()
 
     index_array = [3, 10, 11]
     constituency = "Dundee City"
+    sheet_index = "2012"
 
-    assert_equal([{:column_name=>"Average Monthly Income (Net £)", :stat=>134}, {:column_name=>"Percentage of Income Spent on Priority Expenditure", :stat=>44}, {:column_name=>"Employment Change/ Unemployment/ Redundancy", :stat=>36}], @excel_reader.create_constituency_object(index_array, constituency))
+    assert_equal({"Dundee City"=>[{"2012"=>[{"Average Monthly Income (Net £)"=>134}, {"Percentage of Income Spent on Priority Expenditure"=>44}, {"Employment Change/ Unemployment/ Redundancy"=>36}]}]}, @excel_reader.create_constituency_object(index_array, constituency, sheet_index))
   end
 
 end

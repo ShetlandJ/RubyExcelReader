@@ -8,6 +8,7 @@ get '/api' do
 
   index_array = [3, 10, 11]
   constituency = "Dundee City"
+  sheet = "2012"
 
-  json @excel_reader.create_constituency_object(index_array, constituency)
+  json @excel_reader.multiple_object_test()
 end

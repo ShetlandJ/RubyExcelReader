@@ -23,6 +23,7 @@ class ExcelReader
   end
 
   def get_sheet_names()
+    @sheets = []
     for sheet in @spreadsheet.sheets()
       if sheet.to_i > 1
         @sheets.push(sheet)
@@ -80,21 +81,50 @@ class ExcelReader
     end
   end
 
-  def get_cell(row, column)
-    return @spreadsheet.cell(row, column)
+  def get_cell(row, column, sheet)
+    cell = @spreadsheet.sheet(sheet).cell(row, column)
+    if (cell == nil)
+      return ""
+    else
+      return cell
+    end
   end
 
-  def create_constituency_object(index_array, constituency)
+  def get_sheet_index(sheet_name)
+    get_sheet_names()
+    for sheet in @sheets
+      if (sheet == sheet_name)
+        return @sheets.index(sheet)
+      end
+    end
+  end
+
+  def create_constituency_object(index_array, constituency, sheet)
+    sheet_index = get_sheet_index(sheet)
+
+    constituency_data = []
+
     constituency_index = get_row_index_by_name(constituency)
+
     for number in index_array
-      @chosen_constituency.push(
-        {
-          get_header_column_name_by_index(number) => get_cell(constituency_index, number)
-        }
-        # get_cell(constituency_index, number)
+
+      constituency_data.push(
+        {get_header_column_name_by_index(number) => get_cell(constituency_index, number, sheet_index)}
       )
     end
+    @chosen_constituency.push( { sheet => constituency_data })
     return { constituency => @chosen_constituency }
+  end
+
+  def multiple_object_test()
+    index_array = [3, 10, 11]
+    constituency = "Dundee City"
+    sheet1 = "2012"
+    sheet2 = "2013"
+
+    create_constituency_object(index_array, constituency, sheet1)
+    create_constituency_object(index_array, constituency, sheet2)
+
   end
 
 end
