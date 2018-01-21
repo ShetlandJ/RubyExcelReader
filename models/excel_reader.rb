@@ -51,20 +51,26 @@ class ExcelReader
 
   def get_header_column_index_by_name(name)
     get_headers_row()
+
     for header in @headers
       if (header == name)
-        return @headers.index(header)
+        return (@headers.index(header) + 2)
       end
     end
   end
 
   def get_row_index_by_name(name)
     get_constituencies()
+
     for constituency in @constituencies
       if (constituency == name)
-        return (@constituencies.index(constituency) + 8)
+        return (@constituencies.index(constituency) + 10)
       end
     end
+  end
+
+  def get_cell(row, column)
+    return @spreadsheet.cell(row, column)
   end
 
 end

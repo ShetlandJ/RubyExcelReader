@@ -26,18 +26,18 @@ class TestExcelReader < MiniTest::Test
   end
 
   def test_get_column_index_by_name()
-    assert_equal(0, @excel_reader.get_header_column_index_by_name("Local Authority ") )
+    assert_equal(2, @excel_reader.get_header_column_index_by_name("Local Authority ") )
   end
 
   def test_get_row_index_by_name()
-    assert_equal(8, @excel_reader.get_row_index_by_name("Aberdeen City") )
+    assert_equal(10, @excel_reader.get_row_index_by_name("Aberdeen City") )
   end
 
   def test_get_cell_by_column_and_row_index()
-    column_index = get_header_column_index_by_name("No. of Debt Advice Clients")
-    row_index = get_row_index_by_name("Aberdeen City")
+    column = @excel_reader.get_header_column_index_by_name("No. of Debt Advice Clients")
+    row = @excel_reader.get_row_index_by_name("Aberdeen City")
 
-    assert_equal("Telephone Clients", @excel_reader.get_cell_coordinates(column_index, row_index))
+    assert_equal(127, @excel_reader.get_cell(row, column))
   end
 
 end
