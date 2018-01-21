@@ -18,7 +18,11 @@ class TestExcelReader < MiniTest::Test
   end
 
   def test_get_constituencies()
-    assert_equal(32, @excel_reader.get_constituencies().length )
+    assert_equal(32, @excel_reader.get_constituencies().length)
+  end
+
+  def test_get_row()
+    assert_equal(138, @excel_reader.get_headers_row().length )
   end
 
 end

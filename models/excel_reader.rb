@@ -7,6 +7,8 @@ class ExcelReader
     @spreadsheet = ""
     @sheets = []
     @constituencies = []
+
+    file_checker()
   end
 
   def file_checker()
@@ -19,29 +21,31 @@ class ExcelReader
   end
 
   def get_sheet_names()
-    if (file_checker)
-      for sheet in @spreadsheet.sheets()
-        if sheet.to_i > 1
-          @sheets.push(sheet)
-        end
+    for sheet in @spreadsheet.sheets()
+      if sheet.to_i > 1
+        @sheets.push(sheet)
       end
-      return @sheets
     end
+    return @sheets
   end
 
   def get_constituencies()
     counter = 8
-    if (file_checker)
-      for constituency in @spreadsheet.column(2)
-        if (counter < 40)
-          @constituencies.push(@spreadsheet.column(2)[counter])
-          counter += 1
-        end
+    for constituency in @spreadsheet.column(2)
+      if (counter < 40)
+        @constituencies.push(@spreadsheet.column(2)[counter])
+        counter += 1
       end
-
     end
+
     return @constituencies
   end
+
+  def get_headers_row()
+    return @spreadsheet.row(9)
+  end
+
+
 
 end
 
