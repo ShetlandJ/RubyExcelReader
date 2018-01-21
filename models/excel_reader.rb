@@ -8,6 +8,7 @@ class ExcelReader
     @sheets = []
     @constituencies = []
     @headers = []
+    @chosen_constituency = []
 
     file_checker()
   end
@@ -73,6 +74,14 @@ class ExcelReader
     return @spreadsheet.cell(row, column)
   end
 
-
+  def create_constituency_object(index_array, constituency)
+    constituency_index = get_row_index_by_name(constituency)
+    for number in index_array
+      @chosen_constituency.push(
+        get_cell(constituency_index, number)
+      )
+    end
+    return @chosen_constituency
+  end
 
 end
