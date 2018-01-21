@@ -53,4 +53,16 @@ class TestExcelReader < MiniTest::Test
     assert_equal({"Dundee City"=>[{"2012"=>[{"Average Monthly Income (Net £)"=>134}, {"Percentage of Income Spent on Priority Expenditure"=>44}, {"Employment Change/ Unemployment/ Redundancy"=>36}]}]}, @excel_reader.create_constituency_object(index_array, constituency, sheet_index))
   end
 
+  def test_get_constituency_data_by_input()
+
+    index_array = [3, 10, 11]
+    constituency = "Dundee City"
+    sheet_index_1 = "2012"
+    sheet_index_2 = "2013"
+
+    multiple_test = @excel_reader.create_constituency_object(index_array, constituency, sheet_index_1).merge( @excel_reader.create_constituency_object(index_array, constituency, sheet_index_2) )
+
+    assert_equal({"Dundee City"=>[{"2012"=>[{"Average Monthly Income (Net £)"=>134}, {"Percentage of Income Spent on Priority Expenditure"=>44}, {"Employment Change/ Unemployment/ Redundancy"=>36}]}, {"2013"=>[{"Average Monthly Income (Net £)"=>191}, {"Percentage of Income Spent on Priority Expenditure"=>53}, {"Employment Change/ Unemployment/ Redundancy"=>69}]}]}, multiple_test)
+  end
+
 end
