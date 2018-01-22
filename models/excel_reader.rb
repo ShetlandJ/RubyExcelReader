@@ -109,7 +109,7 @@ class ExcelReader
     for number in index_array
 
       constituency_data.push(
-        {get_header_column_name_by_index(number) => get_cell(constituency_index, number, sheet_index)}
+        get_header_column_name_by_index(number) => get_cell(constituency_index, number, sheet_index)
       )
 
     end
