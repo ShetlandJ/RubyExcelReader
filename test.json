@@ -1,0 +1,32 @@
+[
+  {
+    "Dundee City": [
+      {
+        "2012": [
+          {
+            "Average Monthly Income (Net £)": 134
+          },
+          {
+            "Percentage of Income Spent on Priority Expenditure": 44
+          },
+          {
+            "Employment Change/ Unemployment/ Redundancy": 36
+          }
+        ]
+      },
+      {
+        "2013": [
+          {
+            "Average Monthly Income (Net £)": 191
+          },
+          {
+            "Percentage of Income Spent on Priority Expenditure": 53
+          },
+          { dd
+            "Employment Change/ Unemployment/ Redundancy": 69
+          }
+        ]
+      }
+    ]
+  }
+]

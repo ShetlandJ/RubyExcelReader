@@ -107,13 +107,14 @@ class ExcelReader
     constituency_index = get_row_index_by_name(constituency)
 
     for number in index_array
+
       constituency_data.push(
         {get_header_column_name_by_index(number) => get_cell(constituency_index, number, sheet_index)}
       )
 
     end
     @chosen_constituency.push( { sheet => constituency_data })
-    return { constituency => @chosen_constituency }
+    return [{ constituency => @chosen_constituency }]
   end
 
   def multiple_object_test()
