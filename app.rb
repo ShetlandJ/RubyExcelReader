@@ -8,3 +8,19 @@ get '/api' do
 
   json @excel_reader.multiple_object_test()
 end
+
+
+post '/save_file' do
+
+  @filename = params[:file][:filename]
+  file = params[:file][:tempfile]
+
+  File.open("./public/#{@filename}", 'wb') do |f|
+    f.write(file.read)
+  end
+
+  @excel_reader = ExcelReader.new("#{@filename}");
+
+  json
+  erb :show_image
+end

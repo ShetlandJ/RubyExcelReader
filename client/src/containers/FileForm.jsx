@@ -27,19 +27,27 @@ class FileForm extends React.Component {
 
   render() {
 
-    // const constituency_data = this.state.constituencies[0].map((constituency, index) => {
-    //   return <div className="constituency">
-    //     {constituency}
-    //   </div>
-    // });
+    const constituencies = this.state.constituencies.map((constituency, index) => {
+      console.log(constituency["Dundee City"][0]["2012"]);
+      console.log("BELOW ME");
 
-    // console.log(constituency_data);
-    console.log(this.state.constituencies);
+      for (var year_data of constituency["Dundee City"]) {
+        console.log(year_data);
+      }
+      return <div className="test">
 
-    return(
-      <div>hello</div>
-    )
+        <p>{Object.keys(constituency)}</p>
+        <p>{Object.keys(constituency["Dundee City"])}</p>
+        <p>Average Monthly Income (Net £):</p>
+        <p>{constituency["Dundee City"][0]["2012"]["Average Monthly Income (Net £)"]}</p>
+        </div>
+
+      });
+
+      return(
+        <div>{constituencies}</div>
+      )
+    }
   }
-}
 
-export default FileForm;
+  export default FileForm;
