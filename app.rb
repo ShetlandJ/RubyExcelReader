@@ -11,6 +11,7 @@ get '/api' do
 
   index_array = [3, 9, 10]
   sheet = "2012"
+  sheet1 = "2013"
 
   my_stuff = []
 
@@ -22,10 +23,13 @@ get '/api' do
 
     my_stuff.push(@excel_reader.create_constituency_object(index_array, sheet_constituencies[number], sheet))
 
+    my_stuff.push(@excel_reader.create_constituency_object(index_array, sheet_constituencies[number], sheet1))
+
+
     number +=1
   end
 
-  json my_stuff
+  json my_stuff[0]
 end
 
 

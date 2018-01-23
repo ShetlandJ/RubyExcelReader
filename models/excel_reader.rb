@@ -9,6 +9,7 @@ class ExcelReader
     @constituencies = []
     @headers = []
     @chosen_constituency = []
+    @test = []
 
     file_checker()
   end
@@ -110,7 +111,6 @@ class ExcelReader
 
     constituency_index = get_row_index_by_name(constituency)
 
-    constituency_data["Constituency"] = constituency
     constituency_data["Year"] = sheet
 
     for number in index_array
@@ -122,10 +122,12 @@ class ExcelReader
 
     end
 
-    @chosen_constituency.push( constituency_data)
+    @chosen_constituency.push( constituency => constituency_data)
 
+  end
+
+  def return_chosen_constituency()
     return @chosen_constituency
-
   end
 
   def multiple_object_test()
