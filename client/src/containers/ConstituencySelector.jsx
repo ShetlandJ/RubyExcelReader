@@ -1,11 +1,13 @@
 import React from 'react';
+import Input from './Input';
 
 class ConstituencySelector extends React.Component {
   render() {
+
+    console.log(this.props);
+
     return(
-
-      <input type="checkbox" value="3" name="check[]"/>
-
+      <Input />
     )
   }
 }

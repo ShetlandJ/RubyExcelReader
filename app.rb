@@ -9,7 +9,7 @@ require_relative('./models/excel_reader')
 get '/api' do
   @excel_reader = ExcelReader.new("red.xlsx");
 
-  index_array = [3, 9, 10]
+  index_array = [2, 9, 10]
   sheet = "2012"
   sheet1 = "2013"
 

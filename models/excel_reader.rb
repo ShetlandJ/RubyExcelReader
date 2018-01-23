@@ -61,7 +61,7 @@ class ExcelReader
 
     for header in @headers
       if (header == name)
-        return (@headers.index(header) + 2)
+        return (@headers.index(header))
       end
     end
   end
@@ -115,7 +115,7 @@ class ExcelReader
 
     for number in index_array
 
-      key = get_header_column_name_by_index(number)
+      key = get_header_column_name_by_index(number-2)
       value = get_cell(constituency_index, number, sheet_index)
 
       constituency_data[key] = value
@@ -131,7 +131,7 @@ class ExcelReader
   end
 
   def multiple_object_test()
-    index_array = [3, 10, 11]
+    index_array = [4, 10, 11]
     constituency = "Dundee City"
     sheet1 = "2012"
     sheet2 = "2013"

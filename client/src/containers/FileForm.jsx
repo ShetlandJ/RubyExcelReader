@@ -1,5 +1,5 @@
 import React from 'react';
-import Input from './Input';
+import ConstituencySelector from './ConstituencySelector';
 
 class FileForm extends React.Component {
 
@@ -27,22 +27,8 @@ class FileForm extends React.Component {
   }
 
   render() {
-
-    const constituencies = this.state.constituencies.map((constituency, index) => {
-
-      const constituency_name = Object.keys(constituency)
-
-      constituency[constituency_name].forEach(function(year_data, index){
-        console.log(year_data[index+2012]);
-      });
-
-      return <div className="test">
-        <Input />
-      </div>
-    })
-
     return(
-      <div>{constituencies}</div>
+      <div><ConstituencySelector constituencies={this.state.constituencies}/></div>
     )
   }
 }
