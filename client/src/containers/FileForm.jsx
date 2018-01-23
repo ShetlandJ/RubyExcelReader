@@ -1,4 +1,5 @@
 import React from 'react';
+import Input from './Input';
 
 class FileForm extends React.Component {
 
@@ -36,8 +37,7 @@ class FileForm extends React.Component {
       });
 
       return <div className="test">
-        <p>{constituency_name}</p>
-        <p>Average Monthly Income (Net £):</p>
+        <Input />
       </div>
     })
 

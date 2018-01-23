@@ -44,6 +44,10 @@ class ExcelReader
     return @constituencies
   end
 
+  def return_constituencies()
+    @constituencies
+  end
+
   def get_headers_row()
     for header in @spreadsheet.row(9)
       @headers.push(header)
@@ -106,6 +110,7 @@ class ExcelReader
 
     constituency_index = get_row_index_by_name(constituency)
 
+    constituency_data["Constituency"] = constituency
     constituency_data["Year"] = sheet
 
     for number in index_array
@@ -119,7 +124,7 @@ class ExcelReader
 
     @chosen_constituency.push( constituency_data)
 
-    return [constituency => @chosen_constituency]
+    return @chosen_constituency
 
   end
 
