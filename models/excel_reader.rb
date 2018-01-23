@@ -106,13 +106,18 @@ class ExcelReader
 
     constituency_index = get_row_index_by_name(constituency)
 
+    constituency_data["Year"] = sheet
+
     for number in index_array
 
-      constituency_data[get_header_column_name_by_index(number)] = get_cell(constituency_index, number, sheet_index)
+      key = get_header_column_name_by_index(number)
+      value = get_cell(constituency_index, number, sheet_index)
+
+      constituency_data[key] = value
 
     end
 
-    @chosen_constituency.push( sheet => constituency_data)
+    @chosen_constituency.push( constituency_data)
 
     return [constituency => @chosen_constituency]
 

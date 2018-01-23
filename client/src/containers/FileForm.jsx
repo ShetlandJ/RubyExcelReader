@@ -28,26 +28,23 @@ class FileForm extends React.Component {
   render() {
 
     const constituencies = this.state.constituencies.map((constituency, index) => {
-      console.log(constituency["Dundee City"][0]["2012"]);
-      console.log("BELOW ME");
 
-      for (var year_data of constituency["Dundee City"]) {
-        console.log(year_data);
-      }
-      return <div className="test">
+      const constituency_name = Object.keys(constituency)
 
-        <p>{Object.keys(constituency)}</p>
-        <p>{Object.keys(constituency["Dundee City"])}</p>
-        <p>Average Monthly Income (Net £):</p>
-        <p>{constituency["Dundee City"][0]["2012"]["Average Monthly Income (Net £)"]}</p>
-        </div>
-
+      constituency[constituency_name].forEach(function(year_data, index){
+        console.log(year_data[index+2012]);
       });
 
-      return(
-        <div>{constituencies}</div>
-      )
-    }
-  }
+      return <div className="test">
+        <p>{constituency_name}</p>
+        <p>Average Monthly Income (Net £):</p>
+      </div>
+    })
 
-  export default FileForm;
+    return(
+      <div>{constituencies}</div>
+    )
+  }
+}
+
+export default FileForm;

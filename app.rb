@@ -1,5 +1,8 @@
 require "sinatra"
 require "sinatra/json"
+configure { set :server, :puma }
+
+
 
 require_relative('./models/excel_reader')
 
@@ -13,14 +16,14 @@ end
 post '/save_file' do
 
   @filename = params[:file][:filename]
-  file = params[:file][:tempfile]
 
-  File.open("./public/#{@filename}", 'wb') do |f|
-    f.write(file.read)
-  end
+  @excel_reader = ExcelReader.new(@filename);
 
-  @excel_reader = ExcelReader.new("#{@filename}");
+  index_array = [3, 10, 11]
+  constituency = "Aberdeen City"
+  sheet1 = "2012"
+  sheet2 = "2013"
 
-  json
-  erb :show_image
+
+  json @excel_reader.create_constituency_object(index_array, constituency, sheet1)
 end
