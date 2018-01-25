@@ -104,41 +104,48 @@ class ExcelReader
     end
   end
 
-  def create_constituency_object(index_array, constituency, sheet)
-    sheet_index = get_sheet_index(sheet)
+  def create_constituency_object(index_array, constituency, sheet_array)
+
+    sheet_indexes = []
+    for sheet in sheet_array
+      sheet_indexes.push(get_sheet_index(sheet))
+    end
 
     constituency_data = {}
 
     constituency_index = get_row_index_by_name(constituency)
 
-    constituency_data["Year"] = sheet
-
     for number in index_array
+      for sheet_index in sheet_indexes
 
-      key = get_header_column_name_by_index(number-2)
-      value = get_cell(constituency_index, number, sheet_index)
+        key = get_header_column_name_by_index(number-2)
+        if (get_cell(constituency_index, number, sheet_index).is_a?(String) )
+          value = get_cell(constituency_index, number, sheet_index)
+        elsif (key.include? "%" || "Percentage")
+          value = (get_cell(constituency_index, number, sheet_index) * 100).round(0)
+        else
+          value = get_cell(constituency_index, number, sheet_index).round(2)
+        end
+      end
 
       constituency_data[key] = value
 
     end
 
-    @chosen_constituency.push( constituency => constituency_data)
+    my_test = []
+
+    my_test.push(sheet_array[0] => constituency_data)
+    my_test.push(sheet_array[1] => constituency_data)
+
+    @chosen_constituency.push( constituency => my_test)
+
+
 
   end
+
 
   def return_chosen_constituency()
     return @chosen_constituency
-  end
-
-  def multiple_object_test()
-    index_array = [4, 10, 11]
-    constituency = "Dundee City"
-    sheet1 = "2012"
-    sheet2 = "2013"
-
-    create_constituency_object(index_array, constituency, sheet1)
-    create_constituency_object(index_array, constituency, sheet2)
-
   end
 
 end
